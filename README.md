@@ -1,2 +1,3 @@
 # Ec2 With Snapshot
-From lover in AWS and technology, i created this article for help the study and people was whant understand and start the knowloger in AWS
+From a lover of security, technology and cloud, here is another material I create to help the community and support how to make AMIs with standard configurations and your own hardening be a product within your organization
+

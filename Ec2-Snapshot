@@ -1,0 +1,47 @@
+Step 1: Criação de um security group:
+aws ec2 create-security-group --group-name WebServer --description "From public web site"
+
+Step 2: Regra adicionada ao security group:
+aws ec2 authorize-security-group-ingress --group-name WebServer --protocol tcp --port 80 --cidr 0.0.0.0/0
+
+Step 3: Criação de outro security group:
+aws ec2 create-security-group --group-name ln-connection --description "From public web site"
+
+Step 3: Regra adicionada ao security group:
+aws ec2 authorize-security-group-ingress --group-name WebServer --protocol tcp --port 22 --cidr 201.13.146.129/32
+
+Step 4: Command for launch instance: 
+aws ec2 run-instances --image-id ami-xxxxxx --instance-type t2.micro --placement AvailabilityZone=us-west-2 --security-group-ids sg-xxxxxxxxxxxxxx (Capture the Ids from Sgs when you created)
+
+Step 5: Connect in the instance and run this commands:
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+
+Step 6: After install all, going to: /var/www/html and run this command: sudo nano index.html and past this code: 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Web Page</title>
+</head>
+<body>
+  <h1>Hello, World!</h1>
+  <p>This is a paragraph of text.</p>
+  <a href="https://www.bing.com">This is a link to Bing</a>
+</body>
+</html>
+
+Step 7: Press control+X and save in the buffer memory, now it is time to going to console and follow this steps: 
+
+Ste 8: Click in Volumes and select the volume when the first instance run: 
+
+Step 9: Click in Created Snapshot, after created the snapshot:
+
+Step 10: Click in Snapshots and click in created AMI from Snapshot:
+
+Step 11: run this command again: 
+aws ec2 run-instances --image-id ami-xxxxxx(Add the AMI id from your new AMI) --instance-type t2.micro --placement AvailabilityZone=us-west-2 --security-group-ids sg-xxxxxxxxxxxxxx (Capture the Ids from Sgs when you created)
+
+Step 12: Check the IP and connection from the instance.
